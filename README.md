@@ -66,3 +66,13 @@ uv run python main.py --backend inproc --text "Hello world"
 
 - `serve_simple_output.wav`
 - `inproc_batch_output.wav`
+
+## Code structure
+
+- `main.py` - thin orchestrator
+- `pocket_tts_playground/cli.py` - CLI args
+- `pocket_tts_playground/backends/serve.py` - serve/simple path
+- `pocket_tts_playground/backends/inproc.py` - inproc/batch path
+- `pocket_tts_playground/audio.py` - playback utilities
+- `pocket_tts_playground/text.py` - text input + batch split
+- `pocket_tts_playground/metrics.py` - run metrics + summary
