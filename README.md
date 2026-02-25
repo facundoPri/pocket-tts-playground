@@ -1,0 +1,68 @@
+# Pocket TTS Playground (simplified)
+
+This version follows your findings:
+
+- **`serve` backend** uses only **simple mode** (one `/tts` request, no text splitting in our code).
+- **`inproc` backend** uses only **batch mode** (text splitting + multiple `generate_audio` calls).
+- CLI now only asks for:
+  - backend (optional)
+  - text
+
+If backend is omitted:
+1. Try `serve` first (default)
+2. If server is not reachable, fallback to `inproc`
+
+## Setup
+
+```bash
+uv sync
+```
+
+## Start server manually (for `serve`)
+
+Default server URL expected by the app:
+
+- `http://localhost:8000`
+
+Start it with:
+
+```bash
+uv run pocket-tts serve --host localhost --port 8000 --voice alba
+```
+
+## Usage
+
+### 1) Auto mode (recommended)
+
+```bash
+uv run python main.py --text "Hello world"
+```
+
+- Uses `serve` if available
+- Falls back to `inproc` if not
+
+### 2) Force serve
+
+```bash
+uv run python main.py --backend serve --text "Hello world"
+```
+
+### 3) Force inproc
+
+```bash
+uv run python main.py --backend inproc --text "Hello world"
+```
+
+## Useful flags
+
+```bash
+--serve-url http://localhost:8000
+--max-chars 140         # only affects inproc (batch splitting)
+--no-playback
+--voice alba
+```
+
+## Output files
+
+- `serve_simple_output.wav`
+- `inproc_batch_output.wav`
