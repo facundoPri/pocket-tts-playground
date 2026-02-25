@@ -60,7 +60,13 @@ uv run python main.py --backend inproc --text "Hello world"
 --max-chars 140         # only affects inproc (batch splitting)
 --no-playback
 --voice alba
+--timing-report          # include timing breakdown section
 ```
+
+Timing notes:
+- `startup_time` for `serve` is the `/health` probe time only (server boot is external).
+- `startup_time` for `inproc` is model load + voice prep (plus probe time if fallback from serve happened).
+- The phase-by-phase timing breakdown is shown only when `--timing-report` is enabled.
 
 ## Output files
 

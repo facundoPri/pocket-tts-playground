@@ -30,4 +30,9 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Generate and save WAV without real-time playback.",
     )
+    parser.add_argument(
+        "--timing-report",
+        action="store_true",
+        help="Show detailed timing breakdown section in the summary.",
+    )
     return parser.parse_args()
